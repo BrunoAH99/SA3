@@ -7,11 +7,17 @@ const RELATORIO = sequelize.define('relatorio', {
         primaryKey: true, 
         autoIncrement: true
     },
-    funcionario: {
+    idFuncionario: {
         type: DataTypes.STRING    
     },
-    epi: {
+    nomeFuncionario: {
+        type: DataTypes.STRING
+    },
+    idEpi: {
         type: DataTypes.STRING    
+    },
+    nomeEpi:{
+        type: DataTypes.STRING
     },
     quantidade:{
         type: DataTypes.INTEGER

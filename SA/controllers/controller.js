@@ -90,20 +90,50 @@ const validarSenha = async (req, res) => {
 
 const relatorio = async (req, res) => {
     try {
-        const { funcionario, epi, quantidade, data, status } = req.body
-        if (!funcionario || !epi || !quantidade || !data || !status) {
-            return res.status(404).send({ mensagem: 'Favor informar funcionario, epi, quantidade, data e status' })
-        }
+        const { idFuncionario, nomeFuncionario, idEpi, nomeEpi, quantidade, data, status } = req.body
+        // if (!funcionario || !epi || !quantidade || !data || !status) {
+        //     return res.status(404).send({ mensagem: 'Favor informar funcionario, epi, quantidade, data e status' })
+        // }
 
-        const historico = await RELATORIO.create({ funcionario, epi, quantidade, data, status })
+        await RELATORIO.create({ idFuncionario, nomeFuncionario, idEpi, nomeEpi, quantidade, data, status })
 
-        res.status(201).send(historico)
+        res.status(201).send("adicionado")
 
     } catch (erro) {
         console.log(erro)
         res.status(500).send({ mensagem: 'Erro interno' })
     }
 }
+
+const listaRelatorio = async (req, res) => {
+    try {
+        const lista_relatorio = await RELATORIO.findAll()
+        res.status(200).send(lista_relatorio)
+    } catch (erro) {
+        res.status(500).send({ mensagem: 'Erro ao exibir relatório' })
+    }
+}
+
+const listaRelatorioFuncionario = async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const lista_relatorio = await RELATORIO.findAll({
+            where: { funcionario: id }
+        })
+
+        if (lista_relatorio.length === 0) {
+            return res.status(404).send({ mensagem: 'Nenhum relatório encontrado para este funcionário.' })
+        }
+
+        res.status(200).send(lista_relatorio)
+    } catch (erro) {
+        console.error('Erro ao buscar relatórios:', erro)
+        res.status(500).send({ mensagem: 'Erro ao exibir relatórios. Tente novamente mais tarde.' })
+    }
+};
+
+
 
 const funcionarios = async (req, res) => {
     try {
@@ -192,14 +222,13 @@ const apagarFuncionario = async (req, res) => {
     }
 }
 
-
 const atualizarEpi = async (req, res) => {
-    
+
     try {
         const id = req.params.id
         const { nome, quantidade } = req.body
         const atualizar = await EPI.update({ nome, quantidade }, { where: { id } })
-        res.status(200).send({ mensagem: "EPI atualizado" })
+        res.status(200).send({ mensagem: "EPI atualizado", atualizar })
     } catch (erro) {
         console.log(erro)
         res.status(500).send({ mensagem: 'Erro interno' })
@@ -207,10 +236,10 @@ const atualizarEpi = async (req, res) => {
 }
 
 const apagarEpi = async (req, res) => {
-    
+
     try {
         const id = req.params.id
-        const { senha } = req.body 
+        const { senha } = req.body
 
         const admFuncionario = await FUNCIONARIO.findOne({ where: { nivel: 2 } })
 
@@ -232,4 +261,4 @@ const apagarEpi = async (req, res) => {
     }
 }
 
-export { cadastrarEPI, cadastrarFuncionario, login, funcionarios, funcionario, validarSenha, relatorio, epis, epi, atualizarFuncionario, apagarFuncionario, atualizarEpi, apagarEpi }
+export { cadastrarEPI, cadastrarFuncionario, login, funcionarios, funcionario, validarSenha, relatorio, listaRelatorio, listaRelatorioFuncionario, epis, epi, atualizarFuncionario, apagarFuncionario, atualizarEpi, apagarEpi }
