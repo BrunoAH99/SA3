@@ -7,24 +7,28 @@ export default function FuncionarioDetalhes() {
     const { id } = useParams()
     const [funcionario, setFuncionario] = useState('')
     const [error, setError] = useState('')
-    const [relatorio, setRelatorio] = useState('')
+    const [relatorio, setRelatorio] = useState([])
     const [mensagem, setMensagem] = useState('')
 
     const carregarFuncionario = async () => {
         try {
             const response = await axios.get(`http://localhost:3000/funcionario/${id}`)
             setFuncionario(response.data)
-            console.log(response.data)
         } catch (error) {
-            setError('Erro ao carregar funcionário');
+            setError('Erro ao carregar funcionário')
             console.error('Erro ao carregar funcionário:', error.response || error)
         }
     }
 
     const carregarRelatorio = async () => {
-        const response = await axios.get(`http://localhost:3000/listar_relatorios_funcionario/${id}`)
-        setRelatorio(response.data)
-        console.log(response.data)
+        try {
+            const response = await axios.get(`http://localhost:3000/listar_relatorios_funcionario/${id}`)
+            setRelatorio(response.data)
+            console.log(response.data)
+        } catch (error) {
+            setError('Erro ao carregar relatório')
+            console.error('Erro ao carregar relatório:', error)
+        }
     }
 
     const apagarFuncionario = async () => {
@@ -36,13 +40,13 @@ export default function FuncionarioDetalhes() {
         }
 
         try {
-            // Envia a requisição para apagar o funcionário com a senha do administrador
             const respostaExcluir = await axios.delete(`http://localhost:3000/apagar_funcionario/${id}`, {
-                data: { senha: senhaConfirmacao } // A senha é enviada no corpo da requisição
+                data: { senha: senhaConfirmacao }
             })
             setMensagem(respostaExcluir.data.mensagem)
         } catch (error) {
-            setMensagem('Erro ao excluir funcionário', mensagem)
+            setMensagem('Erro ao excluir funcionário')
+            console.error('Erro ao excluir funcionário:', error)
         }
     }
 
@@ -50,16 +54,14 @@ export default function FuncionarioDetalhes() {
         const carregarDados = async () => {
             try {
                 await carregarFuncionario()
-                await carregarRelatorio()
             } catch (error) {
                 setError('Erro ao carregar dados do funcionário ou relatórios.')
                 console.error(error)
             }
         }
-
-        carregarDados()
+        carregarDados()        
+        carregarRelatorio()
     }, [id])
-
 
     if (error) {
         return <p>{error}</p>
@@ -76,8 +78,6 @@ export default function FuncionarioDetalhes() {
                         <li className="funcionario-detalhes-item">Telefone: {funcionario.telefone}</li>
                         <li className="funcionario-detalhes-item">Matrícula: {funcionario.id}</li>
                     </ul>
-
-
                 ) : (
                     <p className="funcionario-not-found">Funcionário não encontrado.</p>
                 )}
@@ -90,13 +90,25 @@ export default function FuncionarioDetalhes() {
                     <button>Registro</button>
                 </Link>
             </div>
-            <div>
-                <p>{relatorio.data}</p>
-                <p>{relatorio.nomeEpi}</p>
-                <p>{relatorio.nomeFuncionario}</p>
-                <p>{relatorio.quantidade}</p>
-                <p>{relatorio.status}</p>
+
+            <div className="relatorio-detalhes-container">
+                <h3>Relatório de Movimentação de EPIs</h3>
+                {relatorio.length > 0 ? (
+                    relatorio.map((item, index) => (
+                        <div key={index} className="relatorio-item">
+                            <p>Data: {item.data}</p>
+                            <p>Nome do EPI: {item.nomeEpi}</p>
+                            <p>Nome do Funcionário: {item.nomeFuncionario}</p>
+                            <p>Quantidade: {item.quantidade}</p>
+                            <p>Status: {item.status}</p>
+                        </div>
+                    ))
+                ) : (
+                    <p>Nenhum relatório encontrado para este funcionário.</p>
+                )}
             </div>
+
+            {mensagem && <p>{mensagem}</p>}
         </>
     )
 }

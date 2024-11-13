@@ -91,9 +91,6 @@ const validarSenha = async (req, res) => {
 const relatorio = async (req, res) => {
     try {
         const { idFuncionario, nomeFuncionario, idEpi, nomeEpi, quantidade, data, status } = req.body
-        // if (!funcionario || !epi || !quantidade || !data || !status) {
-        //     return res.status(404).send({ mensagem: 'Favor informar funcionario, epi, quantidade, data e status' })
-        // }
 
         await RELATORIO.create({ idFuncionario, nomeFuncionario, idEpi, nomeEpi, quantidade, data, status })
 
@@ -119,19 +116,20 @@ const listaRelatorioFuncionario = async (req, res) => {
 
     try {
         const lista_relatorio = await RELATORIO.findAll({
-            where: { funcionario: id }
+            where: { idFuncionario: id }
         })
 
         if (lista_relatorio.length === 0) {
-            return res.status(404).send({ mensagem: 'Nenhum relatório encontrado para este funcionário.' })
+            return res.status(204).send({ mensagem: 'Nenhum relatório encontrado para este funcionário.' })
         }
 
         res.status(200).send(lista_relatorio)
+        console.log(lista_relatorio)
     } catch (erro) {
         console.error('Erro ao buscar relatórios:', erro)
         res.status(500).send({ mensagem: 'Erro ao exibir relatórios. Tente novamente mais tarde.' })
     }
-};
+}
 
 
 

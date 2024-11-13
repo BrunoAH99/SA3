@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom'
 
 export default function AtualizarFuncionario() {
     const [nome, setNome] = useState('')
-    const [senha, setSenha] = useState('')
     const [email, setEmail] = useState('')
     const [setor, setSetor] = useState('')
     const [telefone, setTelefone] = useState('')
@@ -12,7 +11,7 @@ export default function AtualizarFuncionario() {
     const { id } = useParams()
 
     const atualizar_funcionario = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         try {
             const resposta = await axios.post('http://localhost:3000/cadastro_funcionario', {
@@ -21,7 +20,6 @@ export default function AtualizarFuncionario() {
             setMensagem(resposta.data.mensagem)
             // Limpar os campos após o cadastro
             setNome('')
-            setSenha('')
             setEmail('')
             setSetor('')
             setTelefone('')
@@ -33,7 +31,7 @@ export default function AtualizarFuncionario() {
     const atualizarFuncionario = async () => {
         try {
             const resposta = await axios.put(`http://localhost:3000/atualizar_funcionario/${id}`, {
-                nome, setor, telefone, senha, email
+                nome, setor, telefone, email
             })
             setMensagem(resposta.data.mensagem)
         } catch (error) {
@@ -52,14 +50,6 @@ export default function AtualizarFuncionario() {
                         type="text"
                         value={nome}
                         onChange={(e) => setNome(e.target.value)}
-                        required />
-                </div>
-                <div>
-                    <label>Senha:</label>
-                    <input
-                        type="password"
-                        value={senha}
-                        onChange={(e) => setSenha(e.target.value)}
                         required />
                 </div>
                 <div>
