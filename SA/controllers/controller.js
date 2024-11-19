@@ -131,6 +131,25 @@ const listaRelatorioFuncionario = async (req, res) => {
     }
 }
 
+const listaRelatorioEPI = async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const lista_relatorio = await RELATORIO.findAll({
+            where: { idEpi: id }
+        })
+        if (lista_relatorio.length === 0) {
+            return res.status(204).send({ mensagem: 'Nenhum relatório encontrado para este EPI.' })
+        }
+
+        res.status(200).send(lista_relatorio)
+        console.log(lista_relatorio)
+    } catch (erro) {
+        console.error('Erro ao buscar relatórios:', erro)
+        res.status(500).send({ mensagem: 'Erro ao exibir relatórios. Tente novamente mais tarde.' })
+    }
+}
+
 
 
 const funcionarios = async (req, res) => {
@@ -259,4 +278,4 @@ const apagarEpi = async (req, res) => {
     }
 }
 
-export { cadastrarEPI, cadastrarFuncionario, login, funcionarios, funcionario, validarSenha, relatorio, listaRelatorio, listaRelatorioFuncionario, epis, epi, atualizarFuncionario, apagarFuncionario, atualizarEpi, apagarEpi }
+export { cadastrarEPI, cadastrarFuncionario, login, funcionarios, funcionario, validarSenha, relatorio, listaRelatorio, listaRelatorioFuncionario, listaRelatorioEPI, epis, epi, atualizarFuncionario, apagarFuncionario, atualizarEpi, apagarEpi }

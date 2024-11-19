@@ -7,6 +7,7 @@ export default function EpiDetalhes() {
     const { id } = useParams()
     const [epi, setEPI] = useState('')
     const [error, setError] = useState('')
+    const [relatorio, setRelatorio] = useState([])
     const [mensagem, setMensagem] = useState('')
 
     const carregarEPI = async () => {
@@ -21,6 +22,7 @@ export default function EpiDetalhes() {
     
     useEffect(() => {
         carregarEPI()
+        carregarRelatorio()
     }, [id])
 
     const apagarEpi = async () => {
@@ -43,31 +45,60 @@ export default function EpiDetalhes() {
         }
     }
 
+    const carregarRelatorio = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3000/listar_relatorios_epi/${id}`)
+            setRelatorio(response.data)
+            console.log(response.data)
+        } catch (error) {
+            setError('Erro ao carregar relatório')
+            console.error('Erro ao carregar relatório:', error)
+        }
+    }
+
 
     if (error) {
         return <p>{error}</p>
     }
 
     return (
-        <div>
+        <div className="epi-detalhes-container">
             {epi ? (
-                <>
-                    <p>Nome: {epi.nome}</p>
-                    <p>Quantidade: {epi.quantidade}</p>
-                    <p>ID: {epi.id}</p>
-                </>
+            <>
+                <p className="epi-detalhes-item">Nome: {epi.nome}</p>
+                <p className="epi-detalhes-item">Quantidade: {epi.quantidade}</p>
+                <p className="epi-detalhes-item">ID: {epi.id}</p>
+            </>
             ) : (
-                <p>EPI não encontrado.</p>
+            <p className="epi-not-found">EPI não encontrado.</p>
             )}
 
-            <Link to={`/atualizar_epi/${id}`}>
-                <button>Atualizar</button>
-            </Link>
-            <button type="button" onClick={apagarEpi}>Excluir</button>
-            <Link to={`/registro/epi`}>
-                <button>Registro</button>
-            </Link>
-
+            <div className="botoes-container">
+                <Link to={`/atualizar_epi/${id}`}>
+                    <button className="epi-form-button">Atualizar</button>
+                </Link>
+                <Link to={`/registro`}>
+                    <button className="epi-form-button3">Registro</button>
+                </Link>
+                <button type="button" onClick={apagarEpi} className="epi-form-button2">Excluir</button>
+            </div>
+            <div className="funcionario-detalhes-container">
+                <h3>Relatório de Movimentação de EPIs</h3>
+                {relatorio.length > 0 ? (
+                    relatorio.map((item, index) => (
+                        <div key={index} className="funcionario-detalhes-list">
+                            <p>Data: {item.data}</p>
+                            <p>Nome do EPI: {item.nomeEpi}</p>
+                            <p>Nome do Funcionário: {item.nomeFuncionario}</p>
+                            <p>Quantidade: {item.quantidade}</p>
+                            <p>Status: {item.status}</p>
+                        </div>
+                    ))
+                ) : (
+                    <p>Nenhum relatório encontrado para este funcionário.</p>
+                )}
+            </div>
         </div>
+        
     )
 }

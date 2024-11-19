@@ -80,7 +80,7 @@ export default function Registro() {
                             }}
                             required
                         >
-                            <option value="">Selecione um funcionário</option>
+                            <option value="">{nomeFuncionario}</option>
                             {funcionarios?.map(funcionario => (
                                 <option key={funcionario.id} value={`${funcionario.id}:${funcionario.nome}`}>
                                     {funcionario.nome}
@@ -101,7 +101,7 @@ export default function Registro() {
                             }}
                             required
                         >
-                            <option value="">Selecione um EPI</option>
+                            <option value="">{nomeEPI}</option>
                             {epi?.map(epi => (
                                 <option key={epi.id} value={`${epi.id}:${epi.nome}`}>
                                     {epi.nome}
@@ -150,5 +150,5 @@ export default function Registro() {
                 )}
             </div>
         </div>
-    );
+    )
 }

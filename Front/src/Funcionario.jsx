@@ -72,6 +72,7 @@ export default function FuncionarioDetalhes() {
             <div className="funcionario-detalhes-container">
                 {funcionario ? (
                     <ul className="funcionario-detalhes-list">
+                        <img className='icone2' src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="user-icon"></img>
                         <li className="funcionario-detalhes-item">Nome: {funcionario.nome}</li>
                         <li className="funcionario-detalhes-item">Setor: {funcionario.setor}</li>
                         <li className="funcionario-detalhes-item">Email: {funcionario.email}</li>
@@ -81,21 +82,22 @@ export default function FuncionarioDetalhes() {
                 ) : (
                     <p className="funcionario-not-found">Funcionário não encontrado.</p>
                 )}
-
-                <Link to={`/atualizar_funcionario/${id}`}>
-                    <button>Atualizar</button>
-                </Link>
-                <button type="button" onClick={apagarFuncionario}>Excluir</button>
-                <Link to={`/registro`}>
-                    <button>Registro</button>
-                </Link>
+                <div className="botoes-container">
+                    <Link to={`/atualizar_funcionario/${id}`}>
+                        <button className="funcionario-form-button">Atualizar</button>
+                    </Link>
+                    <Link to={`/registro`}>
+                    <button className="funcionario-form-button3">Registro</button>
+                    </Link>
+                    <button className="funcionario-form-button2" type="button" onClick={apagarFuncionario}>Excluir</button>
+                </div>
             </div>
 
-            <div className="relatorio-detalhes-container">
+            <div className="funcionario-detalhes-container">
                 <h3>Relatório de Movimentação de EPIs</h3>
                 {relatorio.length > 0 ? (
                     relatorio.map((item, index) => (
-                        <div key={index} className="relatorio-item">
+                        <div key={index} className="funcionario-detalhes-list">
                             <p>Data: {item.data}</p>
                             <p>Nome do EPI: {item.nomeEpi}</p>
                             <p>Nome do Funcionário: {item.nomeFuncionario}</p>

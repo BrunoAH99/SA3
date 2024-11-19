@@ -1,7 +1,7 @@
 import express from 'express'
 import {
     cadastrarEPI, cadastrarFuncionario, login, funcionarios, epis,
-    atualizarFuncionario, apagarFuncionario, validarSenha, epi, atualizarEpi, apagarEpi, funcionario, listaRelatorio, relatorio, listaRelatorioFuncionario
+    atualizarFuncionario, apagarFuncionario, validarSenha, epi, atualizarEpi, apagarEpi, funcionario, listaRelatorio, relatorio, listaRelatorioFuncionario, listaRelatorioEPI
 } from '../controllers/controller.js'
 const router = express.Router()
 
@@ -20,6 +20,7 @@ router.get('/epi', epis)
 router.post('/relatorio', relatorio)
 router.get('/listar_relatorios', listaRelatorio)
 router.get('/listar_relatorios_funcionario/:id', listaRelatorioFuncionario)
+router.get('/listar_relatorios_epi/:id', listaRelatorioEPI)
 
 export default router
 
