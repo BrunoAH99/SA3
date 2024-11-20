@@ -26,7 +26,7 @@ const RELATORIO = sequelize.define('relatorio', {
         type: DataTypes.DATE
     },
     status:{
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
     }
 }, {
     createdAt: false, updatedAt: false, tableName: 'relatorio'
