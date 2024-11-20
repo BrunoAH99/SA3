@@ -33,5 +33,6 @@ const RELATORIO = sequelize.define('relatorio', {
 })
 
 RELATORIO.sync()
+// RELATORIO.sync({ force: true })
 
 export { RELATORIO }

@@ -24,7 +24,7 @@ export default function AtualizarFuncionario() {
             setSetor('')
             setTelefone('')
         } catch (error) {
-            setMensagem('Erro ao cadastrar funcionario')
+            setMensagem('Erro ao atualizar funcionario')
         }
     }
 
@@ -42,7 +42,7 @@ export default function AtualizarFuncionario() {
 
     return (
         <div className="cadastrar-container">
-            <h1>Atualizar Funcionario</h1>
+            <h1>Atualizar cadastro do funcionário</h1>
             <form onSubmit={atualizar_funcionario} className="cadastrar-form">
                 <div>
                     <label>Nome:</label>

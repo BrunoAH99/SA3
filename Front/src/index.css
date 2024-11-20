@@ -92,7 +92,92 @@
   text-align: center;
 }
 
-/* EPI.jsx ------------------------------------------------*/
+/* EPI.jsx */
+
+.epi-detalhes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+.epi-detalhes-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.epi-detalhes-item {
+  border-bottom: 1px solid #ddd;
+  color: #333;
+  font-size: 1rem;
+}
+
+.epi-detalhes-item:last-child {
+  border-bottom: none;
+}
+
+.epi-not-found {
+  color: #e74c3c;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.botoes-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.epi-form-button {
+  background-color: green; /* Verde */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.epi-form-button:hover {
+  background-color: darkgreen; /* Verde escuro */
+}
+
+.epi-form-button2 {
+  background-color: red; /* Vermelho */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.epi-form-button2:hover {
+  background-color: darkred; /* Vermelho escuro */
+}
+
+.epi-form-button3 {
+  background-color: blue; /* Azul */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.epi-form-button3:hover {
+  background-color: darkblue; /* Azul escuro */
+}
 
 /* Funcionario.jsx */
 
@@ -105,7 +190,7 @@
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
+  max-width: 1000px;
   margin: 20px auto;
 }
 
@@ -131,6 +216,61 @@
   color: #e74c3c;
   font-size: 1rem;
   text-align: center;
+}
+
+.botoes-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.funcionario-form-button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.funcionario-form-button:hover {
+  background-color: darkgreen;
+}
+
+.funcionario-form-button2 {
+  background-color: red; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.funcionario-form-button2:hover {
+  background-color: darkred;
+}
+
+.funcionario-form-button3 {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.funcionario-form-button3:hover {
+  background-color: darkblue;
+}
+
+.icone2 {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 10px;
 }
 
 /* Home.jsx */
@@ -273,7 +413,54 @@
   background-color: #007bb5;
 }
 
-/*ListaEPI.jsx------------------------------------------------------*/
+/*ListaEPI.jsx*/
+
+.lista-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.lista-item {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+  text-align: left;
+  text-decoration: none;
+  color: #333;
+}
+
+.lista-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.lista-item p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.lista-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.lista-loading {
+  font-size: 1.1rem;
+  color: #888;
+  text-align: center;
+  margin-top: 20px;
+}
 
 /*ListaFuncionario.jsx*/
 
@@ -317,6 +504,11 @@
   color: #888;
   text-align: center;
   margin-top: 20px;
+}
+
+.icone {
+  width: 50px;
+  height: 50px;
 }
 
 /* Registro.jsx */
@@ -392,4 +584,154 @@
 
 .registro_form_button:hover {
   background-color: #45a049;
+}
+
+/**TESTE**/
+
+/* Definindo variáveis CSS para cores */
+:root {
+  --primary-color: #4CAF50;
+  --primary-color-hover: #45a049;
+  --secondary-color: #FFA500;
+  --secondary-color-hover: #e69500;
+  --danger-color: #FF6347;
+  --danger-color-hover: #e5533f;
+  --background-color: #f9f9f9;
+  --text-color: #333;
+  --input-border-color: #ccc;
+  --input-focus-color: #4CAF50;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo base para containers */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+  min-height: 100vh;
+}
+
+.container h1 {
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+
+/* Estilo para formulários */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.form input,
+.form select {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid var(--input-border-color);
+  outline: none;
+  transition: border-color 0.3s;
+  margin-left: 10px;
+  width: 100%;
+}
+
+.form input:focus,
+.form select:focus {
+  border-color: var(--input-focus-color);
+}
+
+/* Botões gerais */
+.button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.button.primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.button.secondary {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+}
+
+.button.danger {
+  background-color: var(--danger-color);
+  color: white;
+  border: none;
+}
+
+/* Estilo de ícones */
+.icone {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.icone2 {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 10px;
+}
+
+/* Mensagens de carregamento e erro */
+.message {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+.loading {
+  font-size: 1.1rem;
+  color: #888;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .form {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .button {
+    width: 100%;
+  }
 }

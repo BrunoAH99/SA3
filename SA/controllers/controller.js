@@ -1,4 +1,3 @@
-
 import { EPI } from "../models/EPI.js"
 import { FUNCIONARIO } from "../models/Funcionario.js"
 import { RELATORIO } from "../models/Relatorio.js"
@@ -8,7 +7,7 @@ const cadastrarEPI = async (req, res) => {
     try {
         const { nome, quantidade } = req.body
         if (!nome || !quantidade) {
-            return res.status(404).send({ mensagem: 'Favor informar nome e quantidade' })
+            return res.status(400).send({ mensagem: 'Favor informar nome e quantidade' })
         }
 
         const epi = await EPI.create({ nome, quantidade })
@@ -25,7 +24,7 @@ const cadastrarFuncionario = async (req, res) => {
     try {
         const { nome, email, senha, setor, telefone } = req.body
         if (!nome || !email || !senha || !setor || !telefone) {
-            return res.status(404).send({ mensagem: 'Favor informar todos os campos necessários' })
+            return res.status(400).send({ mensagem: 'Favor informar todos os campos necessários' })
         }
 
         // Hash da senha antes de salvar no banco
@@ -33,10 +32,10 @@ const cadastrarFuncionario = async (req, res) => {
 
         const funcionario = await FUNCIONARIO.create({ nome, email, senha: hashedPassword, setor, telefone })
 
-        res.status(201).send({ mensagem: 'Funcionário cadastrado com sucesso!', funcionario });
+        res.status(201).send({ mensagem: 'Funcionário cadastrado com sucesso!', funcionario })
     } catch (erro) {
-        console.log(erro);
-        res.status(500).send({ mensagem: 'Erro interno' });
+        console.log(erro)
+        res.status(500).send({ mensagem: 'Erro interno' })
     }
 }
 
@@ -94,7 +93,7 @@ const relatorio = async (req, res) => {
 
         await RELATORIO.create({ idFuncionario, nomeFuncionario, idEpi, nomeEpi, quantidade, data, status })
 
-        res.status(201).send("adicionado")
+        res.status(201).send({ mensagem: "Relatório registrado com sucesso" })
 
     } catch (erro) {
         console.log(erro)
@@ -150,8 +149,6 @@ const listaRelatorioEPI = async (req, res) => {
     }
 }
 
-
-
 const funcionarios = async (req, res) => {
     try {
         const listaFuncionarios = await FUNCIONARIO.findAll()
@@ -189,13 +186,12 @@ const epi = async (req, res) => {
     }
 }
 
-
 const epis = async (req, res) => {
     try {
         const listaEPIs = await EPI.findAll()
         res.status(200).send(listaEPIs)
     } catch (erro) {
-        res.status(500).send({ mensagem: 'Erro ao buscar funcionários' })
+        res.status(500).send({ mensagem: 'Erro ao buscar EPIs' })
     }
 }
 
@@ -204,7 +200,7 @@ const atualizarFuncionario = async (req, res) => {
         const id = req.params.id
         const { nome, senha, email, telefone, setor } = req.body
         const atualizar = await FUNCIONARIO.update({ nome, senha, email, telefone, setor }, { where: { id } })
-        res.status(200).send({ mensagem: "Cadastro de funcionario atualizado" })
+        res.status(200).send({ mensagem: "Cadastro de funcionário atualizado" })
     } catch (erro) {
         console.log(erro)
         res.status(500).send({ mensagem: 'Erro interno' })
@@ -265,8 +261,8 @@ const apagarEpi = async (req, res) => {
             return res.status(401).send({ mensagem: 'Senha incorreta. Exclusão não realizada.' })
         }
 
-        const funcionario = await EPI.findOne({ where: { id } })
-        if (!funcionario) {
+        const epi = await EPI.findOne({ where: { id } })
+        if (!epi) {
             return res.status(404).send({ mensagem: 'EPI não encontrado.' })
         }
 
@@ -278,4 +274,21 @@ const apagarEpi = async (req, res) => {
     }
 }
 
-export { cadastrarEPI, cadastrarFuncionario, login, funcionarios, funcionario, validarSenha, relatorio, listaRelatorio, listaRelatorioFuncionario, listaRelatorioEPI, epis, epi, atualizarFuncionario, apagarFuncionario, atualizarEpi, apagarEpi }
+export { 
+    cadastrarEPI, 
+    cadastrarFuncionario, 
+    login, 
+    funcionarios, 
+    funcionario, 
+    validarSenha, 
+    relatorio, 
+    listaRelatorio, 
+    listaRelatorioFuncionario, 
+    listaRelatorioEPI, 
+    epis, 
+    epi, 
+    atualizarFuncionario, 
+    apagarFuncionario, 
+    atualizarEpi, 
+    apagarEpi 
+}

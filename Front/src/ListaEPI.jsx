@@ -16,20 +16,19 @@ export default function EPIs() {
     }, [])
 
     return (
-        <div>
-            {epis.length > 0 ? (
+        <div className="lista-list-container">
+                {epis.length > 0 ? (
                 epis.map((listaEPIs, key) => (
-                    <div key={key}>
-                        <Link to={`/epi/${listaEPIs.id}`}  >
-                            <p>EPI: {listaEPIs.nome}</p>
-                            <p>Quantidade: {listaEPIs.quantidade}</p>
-                        </Link>
-                    </div>
-                )
-                ))
-                : (
-                    <p>Carregando EPIs...</p>
-                )}
+            <div key={key} className="lista-item">
+                <Link to={`/epi/${listaEPIs.id}`} className="lista-link">
+                    <p>EPI: {listaEPIs.nome}</p>
+                    <p>Quantidade: {listaEPIs.quantidade}</p>
+                </Link>
+            </div>
+            ))
+            ) : (
+            <p className="lista-loading">Carregando EPIs...</p>
+            )}
         </div>
     )
 }

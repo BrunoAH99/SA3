@@ -22,7 +22,7 @@ export default function AtualizarEPI() {
 
     return (
         <div className="cadastrar-container">
-            <h1>Atualizar EPI</h1>
+            <h1>Atualizar cadastro de EPI</h1>
             <form onSubmit={atualizar_epi} className="cadastrar-form">
                 <div>
                     <label>Nome:</label>
