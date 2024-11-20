@@ -42,7 +42,7 @@ export default function AtualizarFuncionario() {
 
     return (
         <div className="cadastrar-container">
-            <h1>Cadastrar Funcionario</h1>
+            <h1>Atualizar Funcionario</h1>
             <form onSubmit={atualizar_funcionario} className="cadastrar-form">
                 <div>
                     <label>Nome:</label>
