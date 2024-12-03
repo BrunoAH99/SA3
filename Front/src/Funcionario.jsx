@@ -99,7 +99,6 @@ export default function FuncionarioDetalhes() {
                         <div key={index} className="funcionario-detalhes-list">
                             <p>Data: {item.data}</p>
                             <p>Nome do EPI: {item.nomeEpi}</p>
-                            <p>Nome do Funcionário: {item.nomeFuncionario}</p>
                             <p>Quantidade: {item.quantidade}</p>
                             <p>Status: {item.status}</p>
                         </div>

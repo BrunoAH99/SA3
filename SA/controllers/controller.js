@@ -103,7 +103,9 @@ const relatorio = async (req, res) => {
 
 const listaRelatorio = async (req, res) => {
     try {
-        const lista_relatorio = await RELATORIO.findAll()
+        const lista_relatorio = await RELATORIO.findAll({
+            order: [['data', 'DESC']] 
+        })
         res.status(200).send(lista_relatorio)
     } catch (erro) {
         res.status(500).send({ mensagem: 'Erro ao exibir relatório' })
@@ -115,7 +117,8 @@ const listaRelatorioFuncionario = async (req, res) => {
 
     try {
         const lista_relatorio = await RELATORIO.findAll({
-            where: { idFuncionario: id }
+            where: { idFuncionario: id },
+            order: [['data', 'DESC']] // Ordena pela data em ordem decrescente
         })
 
         if (lista_relatorio.length === 0) {
@@ -123,7 +126,6 @@ const listaRelatorioFuncionario = async (req, res) => {
         }
 
         res.status(200).send(lista_relatorio)
-        console.log(lista_relatorio)
     } catch (erro) {
         console.error('Erro ao buscar relatórios:', erro)
         res.status(500).send({ mensagem: 'Erro ao exibir relatórios. Tente novamente mais tarde.' })
@@ -135,14 +137,14 @@ const listaRelatorioEPI = async (req, res) => {
 
     try {
         const lista_relatorio = await RELATORIO.findAll({
-            where: { idEpi: id }
+            where: { idEpi: id },
+            order: [['data', 'DESC']] // Ordena pela data em ordem decrescente
         })
         if (lista_relatorio.length === 0) {
             return res.status(204).send({ mensagem: 'Nenhum relatório encontrado para este EPI.' })
         }
 
         res.status(200).send(lista_relatorio)
-        console.log(lista_relatorio)
     } catch (erro) {
         console.error('Erro ao buscar relatórios:', erro)
         res.status(500).send({ mensagem: 'Erro ao exibir relatórios. Tente novamente mais tarde.' })

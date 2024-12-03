@@ -104,7 +104,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   max-width: 1000px;
-  margin: 20px auto;
+  margin: 20px auto;  
 }
 
 .epi-detalhes-list {
@@ -112,6 +112,7 @@
   padding: 0;
   margin: 0;
   width: 100%;
+  border-bottom: #03030349 1px solid;
 }
 
 .epi-detalhes-item {
@@ -138,45 +139,48 @@
 }
 
 .epi-form-button {
-  background-color: green; /* Verde */
+  background-color: #4CAF50; 
   color: white;
   border: none;
-  padding: 10px 20px;
+  font-size: 15px;
+  padding: 15px 30px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .epi-form-button:hover {
-  background-color: darkgreen; /* Verde escuro */
+  background-color: #45a049;
 }
 
 .epi-form-button2 {
-  background-color: red; /* Vermelho */
+  background-color: #E53935;
   color: white;
   border: none;
-  padding: 10px 20px;
+  font-size: 15px;
+  padding: 15px 30px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .epi-form-button2:hover {
-  background-color: darkred; /* Vermelho escuro */
+  background-color: #D32F2F;
 }
 
 .epi-form-button3 {
-  background-color: blue; /* Azul */
+  background-color: #008CBA;
   color: white;
   border: none;
-  padding: 10px 20px;
+  font-size: 15px;
+  padding: 15px 30px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .epi-form-button3:hover {
-  background-color: darkblue; /* Azul escuro */
+  background-color: #007bb5;
 }
 
 /* Funcionario.jsx */
@@ -199,6 +203,7 @@
   padding: 0;
   margin: 0;
   width: 100%;
+  border-bottom: 1px solid #ddd;
 }
 
 .funcionario-detalhes-item {
@@ -226,45 +231,48 @@
 }
 
 .funcionario-form-button {
-  background-color: green;
+  background-color: #4CAF50;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 15px 30px;
+  font-size: 15px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .funcionario-form-button:hover {
-  background-color: darkgreen;
+  background-color: #45a049;
 }
 
 .funcionario-form-button2 {
-  background-color: red; 
+  background-color: #E53935; 
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 15px 30px;
+  font-size: 15px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .funcionario-form-button2:hover {
-  background-color: darkred;
+  background-color: #D32F2F;
 }
 
 .funcionario-form-button3 {
-  background-color: blue;
+  background-color: #008CBA;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 15px 30px;
+  font-size: 15px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .funcionario-form-button3:hover {
-  background-color: darkblue;
+  background-color: #007bb5;
 }
 
 .icone2 {
@@ -348,44 +356,50 @@
 
 /* Inicial.jsx */
 
+.imagem_inicial {
+  width: 200px;
+  height: 200px;
+  padding-bottom: 100px;
+}
+
 .inicial_tela {
+  background: linear-gradient(135deg, #ffffff, #f9f9f9); 
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 20px;
-  font-family: Arial, sans-serif;
-  background-color: #f3f4f6;
-  min-height: 100vh;
 }
 
 .inicial_cabecalho {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
-  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  background-color: #a8a8a8;
+  padding: 20px 50px;
+  border-radius: 8px;
 }
 
-.inicial_cabecalho h1 {
-  color: #333;
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.inicial_cabecalho div {
-  display: flex;
-  gap: 20px;
+.inicial_titulo {
+  font-size: 36px;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
 }
 
 .inicial_cabecalho_bt {
   background-color: #4CAF50;
   color: white;
+  font-size: 18px;
+  padding: 14px 28px;
+  margin-left: 10px;
   border: none;
-  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .inicial_cabecalho_bt:hover {
@@ -394,19 +408,22 @@
 
 .inicial_campo_lista {
   display: flex;
+  justify-content: center;
   gap: 20px;
+  width: 100%;
+  max-width: 800px;
   margin-top: 20px;
 }
 
 .inical_bt_lista {
   background-color: #008CBA;
   color: white;
+  font-size: 18px;
+  padding: 15px 30px;
   border: none;
-  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .inical_bt_lista:hover {
@@ -511,6 +528,26 @@
   height: 50px;
 }
 
+.barra-pesquisa {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  background-color: #fdfdfd;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+  border-radius: 40px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s;
+  width: 385px;
+  margin: 20px auto;
+}
+
 /* Registro.jsx */
 
 .registro_tela {
@@ -584,154 +621,4 @@
 
 .registro_form_button:hover {
   background-color: #45a049;
-}
-
-/**TESTE**/
-
-/* Definindo variáveis CSS para cores */
-:root {
-  --primary-color: #4CAF50;
-  --primary-color-hover: #45a049;
-  --secondary-color: #FFA500;
-  --secondary-color-hover: #e69500;
-  --danger-color: #FF6347;
-  --danger-color-hover: #e5533f;
-  --background-color: #f9f9f9;
-  --text-color: #333;
-  --input-border-color: #ccc;
-  --input-focus-color: #4CAF50;
-  --shadow-color: rgba(0, 0, 0, 0.2);
-}
-
-/* Estilo base para containers */
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  background-color: var(--background-color);
-  min-height: 100vh;
-}
-
-.container h1 {
-  color: var(--text-color);
-  margin-bottom: 20px;
-}
-
-/* Estilo para formulários */
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  max-width: 400px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px var(--shadow-color);
-}
-
-.form label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #555;
-}
-
-.form input,
-.form select {
-  padding: 10px;
-  font-size: 1rem;
-  border-radius: 4px;
-  border: 1px solid var(--input-border-color);
-  outline: none;
-  transition: border-color 0.3s;
-  margin-left: 10px;
-  width: 100%;
-}
-
-.form input:focus,
-.form select:focus {
-  border-color: var(--input-focus-color);
-}
-
-/* Botões gerais */
-.button {
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s;
-}
-
-.button:hover {
-  background-color: var(--primary-color-hover);
-}
-
-.button.primary {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-}
-
-.button.secondary {
-  background-color: var(--secondary-color);
-  color: white;
-  border: none;
-}
-
-.button.danger {
-  background-color: var(--danger-color);
-  color: white;
-  border: none;
-}
-
-/* Estilo de ícones */
-.icone {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 10px;
-}
-
-.icone2 {
-  width: 70px;
-  height: 70px;
-  margin-bottom: 10px;
-}
-
-/* Mensagens de carregamento e erro */
-.message {
-  margin-top: 20px;
-  font-size: 1rem;
-  color: #333;
-  text-align: center;
-}
-
-.loading {
-  font-size: 1.1rem;
-  color: #888;
-  text-align: center;
-  margin-top: 20px;
-}
-
-.error {
-  color: #e74c3c;
-  font-size: 1rem;
-  text-align: center;
-}
-
-/* Media Queries para responsividade */
-@media (max-width: 768px) {
-  .container {
-    padding: 10px;
-  }
-
-  .form {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .button {
-    width: 100%;
-  }
 }

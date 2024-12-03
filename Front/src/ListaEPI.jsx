@@ -26,13 +26,12 @@ export default function EPIs() {
 
   return (
     <div className="lista-list-container">
-      <div className="search-container">
-        <input
+      <div>
+        <input className='barra-pesquisa'
           type="text"
-          placeholder="Pesquisar por nome do EPI"
+          placeholder="Pesquisar por nome do EPI:"
           value={searchTerm}
           onChange={handleSearchChange}
-          className="search-input"
         />
       </div>
 
@@ -46,7 +45,7 @@ export default function EPIs() {
           </div>
         ))
       ) : (
-        <p className="lista-loading">Nenhum EPI encontrado</p>
+        <p>Nenhum EPI encontrado.</p>
       )}
     </div>
   )

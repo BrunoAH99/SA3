@@ -34,19 +34,18 @@ export default function Funcionarios() {
 
   return (
     <div className="funcionario-list-container">
-      <div className="search-container">
-        <input
+      <div>
+        <input className='barra-pesquisa'
           type="text"
-          placeholder="Pesquisar funcionário pelo nome"
+          placeholder="Pesquisar funcionário pelo nome:"
           value={searchTerm}
           onChange={handleSearchChange}
-          className="search-input"
         />
       </div>
 
-      {loading && <p className="funcionario-loading">Carregando os funcionários...</p>}
+      {loading && <p>Carregando os funcionários...</p>}
 
-      {error && <p className="funcionario-error">{error}</p>}
+      {error && <p>{error}</p>}
 
       {filteredFuncionarios.length > 0 && !loading ? (
         filteredFuncionarios.map((listaFuncionarios) => (
@@ -57,7 +56,7 @@ export default function Funcionarios() {
           </Link>
         ))
       ) : (
-        !loading && <p className="funcionario-no-data">Nenhum funcionário foi encontrado.</p>
+        !loading && <p>Nenhum funcionário encontrado.</p>
       )}
     </div>
   )

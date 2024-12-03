@@ -19,7 +19,7 @@ export default function EpiDetalhes() {
             console.error('Erro ao carregar EPI:', error.response || error)
         }
     }
-    
+
     useEffect(() => {
         carregarEPI()
         carregarRelatorio()
@@ -62,16 +62,18 @@ export default function EpiDetalhes() {
     }
 
     return (
-        <div className="epi-detalhes-container">
-            {epi ? (
-            <>
-                <p className="epi-detalhes-item">Nome: {epi.nome}</p>
-                <p className="epi-detalhes-item">Quantidade: {epi.quantidade}</p>
-                <p className="epi-detalhes-item">ID: {epi.id}</p>
-            </>
-            ) : (
-            <p className="epi-not-found">EPI não encontrado.</p>
-            )}
+        <>
+            <div className="epi-detalhes-container">
+                {epi ? (
+                    <>
+                        <p className="epi-detalhes-item">EPI: {epi.nome}</p>
+                        <p className="epi-detalhes-item">Quantidade em estoque: {epi.quantidade}</p>
+                        <p className="epi-detalhes-item">ID: {epi.id}</p>
+                    </>
+                ) : (
+                    <p className="epi-not-found">EPI não encontrado.</p>
+                )}
+            </div>
 
             <div className="botoes-container">
                 <Link to={`/atualizar_epi/${id}`}>
@@ -82,14 +84,13 @@ export default function EpiDetalhes() {
                 </Link>
                 <button type="button" onClick={apagarEpi} className="epi-form-button2">Excluir</button>
             </div>
-            
+
             <div className="epi-detalhes-container">
                 <h3>Relatório de Movimentação de EPIs</h3>
                 {relatorio.length > 0 ? (
                     relatorio.map((item, index) => (
                         <div key={index} className="epi-detalhes-list">
                             <p>Data: {item.data}</p>
-                            <p>Nome do EPI: {item.nomeEpi}</p>
                             <p>Nome do Funcionário: {item.nomeFuncionario}</p>
                             <p>Quantidade: {item.quantidade}</p>
                             <p>Status: {item.status}</p>
@@ -99,7 +100,6 @@ export default function EpiDetalhes() {
                     <p>Nenhum relatório encontrado para este funcionário.</p>
                 )}
             </div>
-        </div>
-        
+        </>
     )
 }
