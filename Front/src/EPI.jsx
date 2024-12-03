@@ -97,7 +97,7 @@ export default function EpiDetalhes() {
                         </div>
                     ))
                 ) : (
-                    <p>Nenhum relatório encontrado para este funcionário.</p>
+                    <p>Nenhum relatório encontrado para este EPI...</p>
                 )}
             </div>
         </>
