@@ -24,7 +24,6 @@ export default function FuncionarioDetalhes() {
         try {
             const response = await axios.get(`http://localhost:3000/listar_relatorios_funcionario/${id}`)
             setRelatorio(response.data)
-            console.log(response.data)
         } catch (error) {
             setError('Erro ao carregar relatório')
             console.error('Erro ao carregar relatório:', error)
