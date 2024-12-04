@@ -93,7 +93,7 @@ export default function EpiDetalhes() {
                             <p>Data: {item.data}</p>
                             <p>Nome do Funcionário: {item.nomeFuncionario}</p>
                             <p>Quantidade: {item.quantidade}</p>
-                            <p>Status: {item.status}</p>
+                            <p>Status: {item.statuss}</p>
                         </div>
                     ))
                 ) : (

@@ -1,5 +1,5 @@
-import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 export default function Registro() {
     const [nomeFuncionario, setNomeFuncionario] = useState('')
@@ -8,7 +8,7 @@ export default function Registro() {
     const [idEPI, setIdEPI] = useState('')
     const [quantidade, setquantidade] = useState('')
     const [data, setData] = useState('')
-    const [status, setStatus] = useState('')
+    const [statuss, setStatus] = useState('')
     const [funcionarios, setFuncionarios] = useState([])
     const [epi, setEpis] = useState([])
     const [mensagem, setMensagem] = useState('')
@@ -42,45 +42,64 @@ export default function Registro() {
         fetchEpis()
     }, [])
 
-    // Função para registrar o relatório
-    const relatorio = async (e) => {
-        e.preventDefault()  // Evita o comportamento padrão do botão (se for em um formulário)
 
-        const historico = {
-            idFuncionario,
-            nomeFuncionario,
-            idEpi: idEPI,
-            nomeEpi: nomeEPI,
-            quantidade,
-            data,
-            status,
-        }
 
+    const relatorio = async () => {
         try {
-            const response = await axios.post("http://localhost:3000/relatorio", historico)
-            if (response.status === 201) {
-                setMensagem('Relatório registrado com sucesso!')
+            const historico = {
+                idFuncionario: idFuncionario,
+                nomeFuncionario: nomeFuncionario,
+                idEpi: idEPI,
+                nomeEpi: nomeEPI,
+                quantidade,
+                data,
+                statuss
+            }
+            const estoque = await axios.get(`http://localhost:3000/epi/${historico.idEpi}`)
+            console.log(historico.idEpi)
+            const estoqueAtual = estoque.data.quantidade
+
+            let novaQuantidade = estoqueAtual
+
+            if (historico.statuss === 'Retirada') {
+                if (historico.quantidade <= estoqueAtual) {
+                    novaQuantidade = estoqueAtual - historico.quantidade
+                } else {
+                    setMensagem('Não há estoque suficiente para a retirada.')
+                    setMensagemTipo('error')
+                    return
+                }
+            } else if (historico.statuss === 'Devolução') {
+                novaQuantidade = estoqueAtual + historico.quantidade
+            }
+
+            const resposta = await axios.put(`http://localhost:3000/atualizar_epi/${historico.idEpi}`, {
+                quantidade: novaQuantidade
+            })
+
+            if (resposta.status === 200) {
+                setMensagem('Quantidade atualizada com sucesso!')
                 setMensagemTipo('success')
             } else {
-                setMensagem('Falha ao registrar relatório.')
+                setMensagem('Falha ao atualizar quantidade.')
                 setMensagemTipo('error')
             }
+
+            axios.post("http://localhost:3000/relatorio", historico)
         } catch (erro) {
             console.error(erro)
-            setMensagem('Erro ao registrar relatório.')
-            setMensagemTipo('error')
         }
     }
 
     return (
-        <div className="registro_tela">
-            <h1>R.M.E</h1>
-            <div className="registro_form_container">
-                <form className="registro_form" onSubmit={relatorio}>
-                    <div className="registro_form_group">
+        <div className='registro_tela'>
+            <h1>EPI Center</h1>
+            <div className='registro_form_container'>
+                <div className='registro_form' onSubmit={relatorio}>
+                    <div className='registro_form_group'>
                         <label>Funcionário:</label>
                         <select
-                            className="registro_form_select"
+                            className='registro_form_select'
                             value={nomeFuncionario}
                             onChange={(e) => {
                                 const [id, nome] = e.target.value.split(':')
@@ -88,19 +107,20 @@ export default function Registro() {
                                 setIdFuncionario(id)
                                 console.log({ nome, id })
                             }}
+                            required
                         >
                             <option value="">{nomeFuncionario}</option>
-                            {funcionarios?.map((funcionario) => (
+                            {funcionarios?.map(funcionario => (
                                 <option key={funcionario.id} value={`${funcionario.id}:${funcionario.nome}`}>
                                     {funcionario.nome}
                                 </option>
                             ))}
                         </select>
                     </div>
-                    <div className="registro_form_group">
+                    <div className='registro_form_group'>
                         <label>EPI:</label>
                         <select
-                            className="registro_form_select"
+                            className='registro_form_select'
                             value={nomeEPI}
                             onChange={(e) => {
                                 const [id, nome] = e.target.value.split(':')
@@ -108,40 +128,42 @@ export default function Registro() {
                                 setIdEPI(id)
                                 console.log({ nome, id })
                             }}
+                            required
                         >
                             <option value="">{nomeEPI}</option>
-                            {epi?.map((epi) => (
+                            {epi?.map(epi => (
                                 <option key={epi.id} value={`${epi.id}:${epi.nome}`}>
                                     {epi.nome}
                                 </option>
                             ))}
                         </select>
+
                     </div>
-                    <div className="registro_form_group">
+                    <div className='registro_form_group'>
                         <label>Quantidade:</label>
                         <input
-                            className="registro_form_input"
+                            className='registro_form_input'
                             type="number"
                             value={quantidade}
                             onChange={(e) => setquantidade(e.target.value)}
                             required
                         />
                     </div>
-                    <div className="registro_form_group">
+                    <div className='registro_form_group'>
                         <label>Data:</label>
                         <input
-                            className="registro_form_input"
+                            className='registro_form_input'
                             type="datetime-local"
                             value={data}
                             onChange={(e) => setData(e.target.value)}
                             required
                         />
                     </div>
-                    <div className="registro_form_group">
+                    <div className='registro_form_group'>
                         <label>Status:</label>
                         <select
-                            className="registro_form_input"
-                            value={status}
+                            className='registro_form_input'
+                            value={statuss}
                             onChange={(e) => setStatus(e.target.value)}
                             required
                         >
@@ -150,13 +172,14 @@ export default function Registro() {
                             <option value="Devolução">Devolução</option>
                         </select>
                     </div>
-                    <button className="registro_form_button" type="submit">Cadastrar Relatório</button>
-                    {mensagem && (
-                        <p style={{ color: mensagemTipo === 'success' ? 'green' : 'red' }}>
-                            {mensagem}
-                        </p>
-                    )}
-                </form>
+                    <button className='registro_form_button' onClick={() => relatorio()}>Cadastrar Relatório</button>
+                </div>
+
+                {mensagem && (
+                    <p style={{ color: mensagemTipo === 'success' ? 'green' : 'red' }}>
+                        {mensagem}
+                    </p>
+                )}
             </div>
         </div>
     )

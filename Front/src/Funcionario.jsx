@@ -100,7 +100,7 @@ export default function FuncionarioDetalhes() {
                             <p>Data: {item.data}</p>
                             <p>Nome do EPI: {item.nomeEpi}</p>
                             <p>Quantidade: {item.quantidade}</p>
-                            <p>Status: {item.status}</p>
+                            <p>Status: {item.statuss}</p>
                         </div>
                     ))
                 ) : (

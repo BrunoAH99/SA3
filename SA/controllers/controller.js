@@ -89,9 +89,9 @@ const validarSenha = async (req, res) => {
 
 const relatorio = async (req, res) => {
     try {
-        const { idFuncionario, nomeFuncionario, idEpi, nomeEpi, quantidade, data, status } = req.body
+        const { idFuncionario, nomeFuncionario, idEpi, nomeEpi, quantidade, data, statuss } = req.body
 
-        await RELATORIO.create({ idFuncionario, nomeFuncionario, idEpi, nomeEpi, quantidade, data, status })
+        await RELATORIO.create({ idFuncionario, nomeFuncionario, idEpi, nomeEpi, quantidade, data, statuss })
 
         res.status(201).send({ mensagem: "Relatório registrado com sucesso" })
 
@@ -118,7 +118,7 @@ const listaRelatorioFuncionario = async (req, res) => {
     try {
         const lista_relatorio = await RELATORIO.findAll({
             where: { idFuncionario: id },
-            order: [['data', 'DESC']] // Ordena pela data em ordem decrescente
+            order: [['data', 'DESC']] 
         })
 
         if (lista_relatorio.length === 0) {
@@ -126,6 +126,7 @@ const listaRelatorioFuncionario = async (req, res) => {
         }
 
         res.status(200).send(lista_relatorio)
+
     } catch (erro) {
         console.error('Erro ao buscar relatórios:', erro)
         res.status(500).send({ mensagem: 'Erro ao exibir relatórios. Tente novamente mais tarde.' })

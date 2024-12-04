@@ -25,7 +25,7 @@ const RELATORIO = sequelize.define('relatorio', {
     data:{
         type: DataTypes.DATE
     },
-    status:{
+    statuss:{
         type: DataTypes.STRING
     }
 }, {

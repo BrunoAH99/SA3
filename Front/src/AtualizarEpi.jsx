@@ -8,10 +8,12 @@ export default function AtualizarEPI() {
     const [mensagem, setMensagem] = useState('')    
     const { id } = useParams()
 
-    const atualizar_epi = async () => {
+    const atualizar_epi = async (e) => {
+        e.preventDefault()  
+
         try {
             const resposta = await axios.put(`http://localhost:3000/atualizar_epi/${id}`, {
-                nome, quantidade
+                nome,quantidade                 
             })
             setMensagem(resposta.data.mensagem)
         } catch (error) {
