@@ -86,6 +86,7 @@ export default function Registro() {
             }
 
             axios.post("http://localhost:3000/relatorio", historico)
+            
         } catch (erro) {
             console.error(erro)
         }
